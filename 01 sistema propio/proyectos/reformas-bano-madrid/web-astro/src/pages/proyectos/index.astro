@@ -1,0 +1,36 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { SITE } from '@data/site';
+
+const projects = [
+  { title: "Reforma integral en Argüelles", zone: "Argüelles", service: "Reforma Integral", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663319194189/GtDWXkEw3HZjzzH6Ch3b8h/hero-reforma-integral-PtkybgjiNmqgdLfcNLHh8K.webp", desc: "Reforma completa de baño de 8m² en piso clásico de Argüelles. Cambio total de alicatado, sanitarios y mueble a medida." },
+  { title: "Cambio de bañera en Moncloa", zone: "Moncloa", service: "Cambio a Ducha", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663319194189/GtDWXkEw3HZjzzH6Ch3b8h/hero-cambio-banera-EZM3WzYHDMbet3SY4CtKg4.webp", desc: "Sustitución de bañera por plato de ducha extraplano en 48 horas. Mampara de cristal templado 8mm a medida." },
+  { title: "Mueble a medida en Madrid centro", zone: "Madrid", service: "Muebles a Medida", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663319194189/GtDWXkEw3HZjzzH6Ch3b8h/bathroom-gallery-1-Uvk9yuCwaxcjRzCnVZQ6gX.webp", desc: "Diseño y fabricación de mueble de baño a medida con encimera de porcelana y doble lavabo." },
+  { title: "Reforma sin obra en Argüelles", zone: "Argüelles", service: "Reforma Sin Obra", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663319194189/GtDWXkEw3HZjzzH6Ch3b8h/hero-arguelles-g4sPkhdTuAwopFWkTx5iKu.webp", desc: "Renovación completa sin demolición en piso de alquiler. Instalación en un solo día." },
+  { title: "Mamparas en Moncloa", zone: "Moncloa", service: "Mamparas", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663319194189/GtDWXkEw3HZjzzH6Ch3b8h/hero-homepage-CpBHWLohyRwJUcBfNFcFAa.webp", desc: "Instalación de mampara corredera de cristal templado 6mm en baño con ducha existente." },
+  { title: "Reforma integral en Moncloa", zone: "Moncloa", service: "Reforma Integral", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663319194189/GtDWXkEw3HZjzzH6Ch3b8h/hero-reforma-integral-PtkybgjiNmqgdLfcNLHh8K.webp", desc: "Reforma integral de baño principal en vivienda de 4 habitaciones. Diseño nórdico con gres de gran formato." },
+];
+---
+<Layout title="Proyectos Realizados | Reformas Baño Madrid Pro" description="Galería de proyectos de reforma de baño realizados en Madrid, Argüelles y Moncloa. Antes y después de nuestras reformas." canonical="/proyectos/">
+  <section class="py-16 bg-white">
+    <div class="container-main">
+      <h1 class="text-4xl font-bold text-[#151515] section-title mb-4">Proyectos Realizados</h1>
+      <p class="text-gray-600 mb-10">Algunos de los baños que hemos reformado en Madrid, Argüelles y Moncloa.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((p) => (
+          <div class="service-card">
+            <div class="overflow-hidden rounded-[4px] mb-4 h-48">
+              <img src={p.img} alt={p.title} class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+            </div>
+            <div class="flex gap-2 mb-2">
+              <span class="text-xs bg-[#B30000] text-white px-2 py-1">{p.service}</span>
+              <span class="text-xs bg-[#F6F6F6] text-gray-600 px-2 py-1">{p.zone}</span>
+            </div>
+            <h3 class="font-semibold text-[#151515] mb-2">{p.title}</h3>
+            <p class="text-sm text-gray-600">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

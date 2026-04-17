@@ -1,0 +1,82 @@
+---
+import Layout from '@layouts/Layout.astro';
+import ContactForm from '@components/ContactForm.astro';
+import FAQ from '@components/FAQ.astro';
+import { SERVICES, LOCATIONS, SITE } from '@data/site';
+
+const loc = LOCATIONS.find(l => l.slug === 'arguelles')!;
+const faqs = [{"question": "¿Cuánto cuesta reformar un baño en Argüelles?", "answer": "El precio de reformar un baño en Argüelles varía entre 1.199€ para un cambio de bañera y 15.000€ para una reforma integral. Los pisos clásicos de Argüelles suelen tener baños de dimensiones generosas que permiten reformas muy completas."}, {"question": "¿Tenéis experiencia en las fincas clásicas de Argüelles?", "answer": "Sí, somos especialistas en las fincas clásicas de Argüelles con techos altos y baños de los años 60-80. Conocemos las particularidades de estas viviendas y ofrecemos soluciones adaptadas."}, {"question": "¿Gestionáis los permisos necesarios para la reforma?", "answer": "Sí, nos encargamos de todos los trámites necesarios, incluyendo la comunicación con la comunidad de propietarios cuando es necesario por trabajos en elementos comunes."}];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": SITE.name,
+  "url": SITE.url + "/zonas/madrid/arguelles/",
+  "telephone": SITE.phoneE164,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Argüelles",
+    "addressRegion": "Madrid",
+    "addressCountry": "ES"
+  },
+  "areaServed": "Argüelles"
+};
+---
+
+<Layout
+  title="Reforma de Baño en Argüelles, Madrid | Reformas Baño Madrid Pro"
+  description="Reforma de baño en Argüelles, Madrid. Especialistas en pisos clásicos del barrio. Cambio de bañera desde 1.199€. ☎ 910 12 34 56"
+  canonical="/zonas/madrid/arguelles/"
+  schema={schema}
+>
+  <!-- HERO -->
+  <section class="relative h-[420px] flex items-end">
+    <img src={loc.heroImage} alt={loc.title} class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/55"></div>
+    <div class="relative container-main pb-12 text-white">
+      <div class="bg-[#B30000] inline-block px-3 py-1 text-xs font-bold uppercase tracking-wide mb-3">MADRID · ARGÜELLES</div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-3">Reforma de Baño en Argüelles</h1>
+      <p class="text-lg text-gray-200 mb-6 max-w-xl">Especialistas en reforma de baño en Argüelles. Expertos en pisos clásicos del barrio.</p>
+      <a href="/presupuesto/" class="btn-primary">Pedir Presupuesto</a>
+    </div>
+  </section>
+
+  <!-- CONTEXTO LOCAL -->
+  <section class="py-16 bg-white">
+    <div class="container-main flex flex-col lg:flex-row gap-12 items-center">
+      <div class="lg:w-1/2">
+        <h2 class="text-3xl font-medium text-[#151515] section-title mb-6">Reformas de baño en Argüelles</h2>
+        <p class="text-gray-600 mb-4">{loc.context}</p>
+        <p class="text-gray-600 mb-6">En Reformas Baño Madrid Pro conocemos bien las características de las viviendas de Argüelles y ofrecemos soluciones adaptadas a cada caso.</p>
+        <a href="/presupuesto/" class="btn-primary">Solicitar presupuesto en Argüelles</a>
+      </div>
+      <div class="lg:w-1/2">
+        <img src={loc.heroImage} alt="Reforma de baño en Argüelles" class="w-full h-64 object-cover rounded-[4px]" />
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS EN ESTA ZONA -->
+  <section class="py-16 bg-[#F6F6F6]">
+    <div class="container-main">
+      <h2 class="text-3xl font-medium text-[#151515] section-title mb-10">Servicios de reforma de baño en Argüelles</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {SERVICES.map((service) => (
+          <a href={`/servicios/${service.slug}/`} class="service-card group block">
+            <div class="overflow-hidden rounded-[4px] mb-4 h-40">
+              <img src={service.heroImage} alt={service.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            </div>
+            <h3 class="text-base font-semibold text-[#151515] group-hover:text-[#B30000] transition-colors mb-2">{service.title}</h3>
+            <p class="text-[#B30000] font-bold text-sm">{service.price}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO -->
+  <ContactForm title="Presupuesto de reforma de baño en Argüelles" subtitle="Somos especialistas en Argüelles. Te contactamos en menos de 24h." zona="arguelles" />
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="Preguntas frecuentes sobre reformas de baño en Argüelles" />
+</Layout>

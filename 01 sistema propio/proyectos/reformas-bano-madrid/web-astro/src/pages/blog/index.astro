@@ -1,0 +1,37 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { BLOG_POSTS } from '@data/site';
+---
+<Layout title="Blog sobre Reformas de Baño en Madrid | Reformas Baño Madrid Pro" description="Consejos, guías de precios y tendencias sobre reforma de baño en Madrid. Blog de Reformas Baño Madrid Pro." canonical="/blog/">
+  <section class="py-16 bg-white">
+    <div class="container-main">
+      <h1 class="text-4xl font-bold text-[#151515] section-title mb-10">El Blog de Reformas Baño Madrid Pro</h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        {BLOG_POSTS.slice(0,2).map((post) => (
+          <a href={`/blog/${post.slug}/`} class="service-card group block">
+            <div class="overflow-hidden rounded-[4px] mb-4 h-56">
+              <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            </div>
+            <p class="text-xs text-gray-400 mb-2">{new Date(post.date).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" })}</p>
+            <h2 class="text-xl font-semibold text-[#151515] group-hover:text-[#B30000] transition-colors mb-2">{post.title}</h2>
+            <p class="text-sm text-gray-600">{post.excerpt}</p>
+            <span class="text-[#B30000] text-sm font-medium mt-3 inline-block">Leer más »</span>
+          </a>
+        ))}
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {BLOG_POSTS.slice(2).map((post) => (
+          <a href={`/blog/${post.slug}/`} class="service-card group block">
+            <div class="overflow-hidden rounded-[4px] mb-4 h-40">
+              <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            </div>
+            <p class="text-xs text-gray-400 mb-2">{new Date(post.date).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" })}</p>
+            <h2 class="text-base font-semibold text-[#151515] group-hover:text-[#B30000] transition-colors mb-2">{post.title}</h2>
+            <p class="text-sm text-gray-600">{post.excerpt}</p>
+            <span class="text-[#B30000] text-sm font-medium mt-3 inline-block">Leer más »</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

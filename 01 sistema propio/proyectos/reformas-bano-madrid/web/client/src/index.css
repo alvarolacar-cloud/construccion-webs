@@ -1,0 +1,243 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   DESIGN TOKENS — Reformas de Baño Madrid Pro
+   Fuente: Doc C (extraído de reforcam.com)
+   Filosofía: Modernismo funcional madrileño
+   Paleta: Rojo #B30000 · Negro #151515 · Blanco #FFFFFF · Gris #F6F6F6
+   Tipografía: Poppins (400/500/700)
+   ============================================================ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  /* Brand Colors */
+  --brand-red: #B30000;
+  --brand-red-dark: #8B0000;
+  --brand-dark: #151515;
+  --brand-darker: #0B0B0B;
+  --brand-light: #F6F6F6;
+  --brand-text: #303035;
+  --brand-heading: #151515;
+
+  /* Tailwind tokens */
+  --radius: 0.25rem;
+  --primary: oklch(0.28 0.18 27);
+  --primary-foreground: oklch(1 0 0);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.2 0.01 60);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.01 60);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.01 60);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.3 0.01 60);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.55 0.01 60);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.2 0.01 60);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.92 0 0);
+  --input: oklch(0.92 0 0);
+  --ring: oklch(0.28 0.18 27);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+    color: var(--brand-text);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--brand-heading);
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  a[href],
+  select:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* ── Brand Utilities ── */
+  .btn-primary {
+    background-color: var(--brand-red);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 16px 48px;
+    border-radius: 0;
+    border: none;
+    display: inline-block;
+    transition: background-color 200ms ease;
+  }
+  .btn-primary:hover {
+    background-color: var(--brand-red-dark);
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    color: var(--brand-red);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 14px 46px;
+    border-radius: 0;
+    border: 2px solid var(--brand-red);
+    display: inline-block;
+    transition: all 200ms ease;
+  }
+  .btn-outline:hover {
+    background-color: var(--brand-red);
+    color: #fff;
+  }
+
+  /* H2 con separador rojo */
+  .section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--brand-heading);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .section-title-divider {
+    width: 116px;
+    height: 2px;
+    background-color: var(--brand-red);
+    margin: 0 auto 2.5rem;
+  }
+
+  /* Sección oscura */
+  .section-dark {
+    background-color: var(--brand-dark);
+    color: #fff;
+  }
+  .section-darker {
+    background-color: var(--brand-darker);
+    color: #fff;
+  }
+  .section-light {
+    background-color: var(--brand-light);
+  }
+
+  /* Card de servicio */
+  .service-card {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: box-shadow 200ms ease, transform 200ms ease;
+  }
+  .service-card:hover {
+    box-shadow: 0 8px 16px -2px rgba(0,0,0,0.14);
+    transform: translateY(-2px);
+  }
+
+  /* Input de formulario */
+  .form-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    padding: 12px 4px;
+    outline: none;
+    transition: border-color 200ms;
+  }
+  .form-input::placeholder { color: rgba(255,255,255,0.5); }
+  .form-input:focus { border-bottom-color: var(--brand-red); }
+
+  .form-input-light {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: var(--brand-text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    padding: 12px 16px;
+    border-radius: 0;
+    outline: none;
+    transition: border-color 200ms;
+  }
+  .form-input-light:focus { border-color: var(--brand-red); }
+
+  /* Icono rojo */
+  .icon-red { color: var(--brand-red); }
+
+  /* Animación fade-in */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+}

@@ -1,0 +1,308 @@
+---
+// index.astro — Homepage Reformas Baño Madrid Pro
+// Doc A 2.6: Hero · Servicios · Métricas · CTA · Diferenciadores · Proyectos · Testimonios · Blog
+// Doc C: Layout-Map 2.1 — Tokens: #B30000, #151515, Poppins, border-radius 0px
+import Layout from '@layouts/Layout.astro';
+import ContactForm from '@components/ContactForm.astro';
+import { SERVICES, TESTIMONIALS, BLOG_POSTS, SITE } from '@data/site';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": SITE.name,
+  "url": SITE.url,
+  "telephone": SITE.phoneE164,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle de la Princesa 45",
+    "addressLocality": "Madrid",
+    "postalCode": "28008",
+    "addressCountry": "ES"
+  },
+  "areaServed": ["Madrid", "Argüelles", "Moncloa"],
+  "priceRange": "€€",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "127"
+  }
+};
+
+// Solo los 4 primeros servicios para la homepage (como en la versión React)
+const homeServices = SERVICES.slice(0, 4);
+
+const differentiators = [
+  {
+    title: "Obra en 48 horas",
+    desc: "El cambio de bañera por ducha lo completamos en un solo día de trabajo.",
+    icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`
+  },
+  {
+    title: "Garantía 5 años",
+    desc: "Todos nuestros trabajos incluyen garantía completa de materiales y mano de obra.",
+    icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`
+  },
+  {
+    title: "Financiación sin intereses",
+    desc: "Financia tu reforma en cómodos plazos mensuales sin ningún tipo de interés.",
+    icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>`
+  },
+  {
+    title: "Presupuesto sin compromiso",
+    desc: "Visita gratuita y presupuesto detallado sin ningún tipo de compromiso.",
+    icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
+  },
+  {
+    title: "Especialistas en Argüelles",
+    desc: "Conocemos los edificios de Argüelles y Moncloa. Sin sorpresas en obra.",
+    icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`
+  },
+  {
+    title: "Retirada a punto limpio",
+    desc: "Nos encargamos de retirar todos los escombros y materiales al punto limpio.",
+    icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`
+  },
+];
+
+const projectImages = [
+  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663319194189/GtDWXkEw3HZjzzH6Ch3b8h/hero-homepage-CpBHWLohyRwJUcBfNFcFAa.webp", alt: "Reforma de baño Madrid 1" },
+  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663319194189/GtDWXkEw3HZjzzH6Ch3b8h/hero-cambio-banera-EZM3WzYHDMbet3SY4CtKg4.webp", alt: "Cambio bañera por ducha Madrid", label: "ANTES/DESPUÉS" },
+  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663319194189/GtDWXkEw3HZjzzH6Ch3b8h/hero-arguelles-g4sPkhdTuAwopFWkTx5iKu.webp", alt: "Reforma baño Argüelles" },
+  { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663319194189/GtDWXkEw3HZjzzH6Ch3b8h/bathroom-gallery-1-Uvk9yuCwaxcjRzCnVZQ6gX.webp", alt: "Muebles baño a medida Madrid" },
+];
+---
+
+<Layout
+  title="Reforma de Baño en Madrid | Reformas Baño Madrid Pro"
+  description="Empresa de reforma de baño en Madrid. Especialistas en Argüelles y Moncloa. Cambio de bañera desde 1.199€. Reforma integral desde 6.995€. ☎ 910 12 34 56"
+  canonical="/"
+  schema={schema}
+>
+
+  <!-- ── HERO ── -->
+  <section class="relative overflow-hidden" style="min-height:580px;">
+    <img
+      src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319194189/GtDWXkEw3HZjzzH6Ch3b8h/hero-homepage-CpBHWLohyRwJUcBfNFcFAa.webp"
+      alt="Reforma de baño en Madrid"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.65) 100%)"></div>
+    <div class="relative container-main flex flex-col justify-end py-16" style="min-height:580px;">
+      <div class="max-w-2xl">
+        <div class="inline-block mb-4 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white" style="background-color:#B30000;">
+          ARGÜELLES · MONCLOA · MADRID
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-2 leading-tight">
+          Reforma de Baño en Madrid
+        </h1>
+        <p class="text-3xl md:text-4xl font-bold mb-6" style="color:#B30000;">desde 1.199€</p>
+        <p class="text-lg text-white/90 mb-8 max-w-xl">
+          Especialistas en reforma integral, cambio de bañera por ducha y mamparas. Presupuesto gratuito en 24 horas. Obra en 48 horas.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/presupuesto/" class="btn-primary text-center">SOLICITAR PRESUPUESTO GRATIS</a>
+          <a href="tel:+34910123456" class="inline-flex items-center justify-center gap-2 border-2 border-white/60 text-white font-bold text-sm uppercase tracking-wide px-8 py-5 hover:bg-white/10 transition-colors duration-200">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+            910 12 34 56
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICIOS ── -->
+  <section class="py-16 bg-white">
+    <div class="container-main">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-medium text-[#151515]">Nuestros Servicios de Reforma de Baño</h2>
+        <span class="section-title-divider"></span>
+        <p class="text-base text-[#303035] max-w-2xl mx-auto" style="margin-top:-1rem;">Trabajamos en Argüelles, Moncloa y toda la ciudad de Madrid con los mejores materiales y garantía de 5 años.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {homeServices.map((service) => (
+          <a href={`/servicios/${service.slug}/`} class="service-card group block no-underline">
+            <div class="overflow-hidden" style="height:200px;">
+              <img src={service.heroImage} alt={service.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            </div>
+            <div class="p-5">
+              <div class="text-xs font-bold uppercase tracking-wider mb-2" style="color:#B30000;">DESDE {service.price.replace('Desde ','')}</div>
+              <h3 class="font-semibold mb-2 text-base leading-snug text-[#151515]">{service.title}</h3>
+              <p class="text-sm leading-relaxed mb-4 text-[#303035]">{service.description}</p>
+              <span class="inline-flex items-center gap-1 text-sm font-semibold" style="color:#B30000;">
+                Ver más
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MÉTRICAS ── -->
+  <section class="py-14 bg-[#F6F6F6]">
+    <div class="container-main">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl font-bold mb-1" style="color:#B30000;">+500</div>
+          <div class="text-sm font-medium text-[#303035]">Baños reformados</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold mb-1" style="color:#B30000;">15+</div>
+          <div class="text-sm font-medium text-[#303035]">Años de experiencia</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold mb-1" style="color:#B30000;">48h</div>
+          <div class="text-sm font-medium text-[#303035]">Plazo cambio bañera</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold mb-1" style="color:#B30000;">5★</div>
+          <div class="text-sm font-medium text-[#303035]">Valoración media</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA FORMULARIO ── -->
+  <ContactForm
+    title="Pide tu presupuesto sin compromiso"
+    subtitle="Cuéntanos tu proyecto y te respondemos en menos de 24 horas con un presupuesto detallado y sin sorpresas."
+  />
+
+  <!-- ── ¿POR QUÉ ELEGIRNOS? ── -->
+  <section class="py-16 bg-white">
+    <div class="container-main">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-medium text-[#151515]">¿Por qué elegirnos?</h2>
+        <span class="section-title-divider"></span>
+        <p class="text-base text-[#303035] max-w-2xl mx-auto" style="margin-top:-1rem;">Más de 500 baños reformados en Madrid avalan nuestra experiencia y compromiso con la calidad.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {differentiators.map((d) => (
+          <div class="flex gap-4">
+            <div class="shrink-0 mt-1 w-10 h-10 rounded-full border-2 border-[#B30000] flex items-center justify-center text-[#B30000]">
+              <Fragment set:html={d.icon} />
+            </div>
+            <div>
+              <h3 class="font-semibold mb-1 text-base text-[#151515]">{d.title}</h3>
+              <p class="text-sm leading-relaxed text-[#303035]">{d.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROYECTOS REALIZADOS ── -->
+  <section class="py-16 bg-[#F6F6F6]">
+    <div class="container-main">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-medium text-[#151515]">Proyectos Realizados</h2>
+        <span class="section-title-divider"></span>
+        <p class="text-base text-[#303035] max-w-2xl mx-auto" style="margin-top:-1rem;">Trabajos reales en pisos de Argüelles, Moncloa y Madrid centro.</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        {projectImages.map((img) => (
+          <div class="relative overflow-hidden rounded-[4px]" style="aspect-ratio:1/1;">
+            <img src={img.src} alt={img.alt} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            {img.label && (
+              <div class="absolute inset-0 flex items-end">
+                <div class="flex w-full">
+                  <span class="flex-1 text-center text-white text-xs font-bold uppercase tracking-wider py-2 bg-black/50">ANTES</span>
+                  <span class="flex-1 text-center text-white text-xs font-bold uppercase tracking-wider py-2 bg-black/50">DESPUÉS</span>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <div class="text-center">
+        <a href="/proyectos/" class="btn-outline">VER TODOS LOS PROYECTOS</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIOS ── -->
+  <section class="py-16 bg-white">
+    <div class="container-main">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-medium text-[#151515]">Lo que dicen nuestros clientes</h2>
+        <span class="section-title-divider"></span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {TESTIMONIALS.map((t) => (
+          <div class="p-6 border border-gray-100 rounded-[4px]">
+            <div class="flex gap-1 mb-3">
+              {Array.from({length: t.rating}).map(() => (
+                <svg class="w-3.5 h-3.5" fill="#B30000" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              ))}
+            </div>
+            <p class="text-sm leading-relaxed mb-4 italic text-[#303035]">"{t.text}"</p>
+            <div>
+              <div class="font-semibold text-sm text-[#151515]">{t.name}</div>
+              <div class="text-xs" style="color:#B30000;">{t.zone}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BLOG ── -->
+  <section class="py-16 bg-[#F6F6F6]">
+    <div class="container-main">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-medium text-[#151515]">Últimas entradas del blog</h2>
+        <span class="section-title-divider"></span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {BLOG_POSTS.map((post) => (
+          <a href={`/blog/${post.slug}/`} class="bg-white block no-underline p-6 rounded-[4px] shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div class="text-xs mb-3 font-medium" style="color:#B30000;">
+              {new Date(post.date).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" })}
+            </div>
+            <h3 class="font-semibold mb-3 text-base leading-snug text-[#151515]">{post.title}</h3>
+            <p class="text-sm leading-relaxed mb-4 text-[#303035]">{post.excerpt}</p>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold" style="color:#B30000;">
+              Leer más
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+      <div class="text-center">
+        <a href="/blog/" class="btn-outline">VER TODOS LOS ARTÍCULOS</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRE-FOOTER ── -->
+  <section class="py-12 bg-[#F6F6F6]">
+    <div class="container-main">
+      <div class="flex flex-col md:flex-row gap-8 items-center bg-white p-8 rounded-[4px] shadow-sm">
+        <div class="md:w-1/3 shrink-0">
+          <img
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319194189/GtDWXkEw3HZjzzH6Ch3b8h/bathroom-gallery-1-Uvk9yuCwaxcjRzCnVZQ6gX.webp"
+            alt="Contacta con Reformas Baño Madrid Pro"
+            class="w-full object-cover rounded-[4px]"
+            style="max-height:200px;"
+          />
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-[#151515]">Contacta con Reformas Baño Madrid Pro</h3>
+          <p class="text-sm mb-4 text-[#303035]">Estamos disponibles de lunes a viernes de 9:00 a 19:00 h y sábados de 10:00 a 14:00 h.</p>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="tel:+34910123456" class="flex items-center gap-2 text-sm font-semibold" style="color:#B30000;">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+              910 12 34 56
+            </a>
+            <a href="mailto:info@reformasbanomadridpro.es" class="text-sm text-[#303035]">
+              info@reformasbanomadridpro.es
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

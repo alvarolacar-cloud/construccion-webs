@@ -1,0 +1,127 @@
+---
+import Layout from '@layouts/Layout.astro';
+import ContactForm from '@components/ContactForm.astro';
+import FAQ from '@components/FAQ.astro';
+import { SERVICES, SITE } from '@data/site';
+
+const service = SERVICES.find(s => s.slug === 'reforma-integral-bano')!;
+
+const faqs = [{"question": "¿Cuánto cuesta una reforma integral de baño en Madrid?", "answer": "El precio de una reforma integral de baño en Madrid varía entre 6.995€ y 15.000€ dependiendo de los metros cuadrados, los materiales elegidos y la complejidad de la obra. Solicita tu presupuesto sin compromiso."}, {"question": "¿Cuánto tiempo tarda una reforma integral de baño?", "answer": "Una reforma integral de baño en Madrid suele durar entre 10 y 20 días laborables dependiendo del tamaño del baño y los trabajos a realizar."}, {"question": "¿Incluís el diseño 3D en el presupuesto?", "answer": "Sí, el diseño 3D está incluido en todos nuestros presupuestos de reforma integral. Podrás ver cómo quedará tu nuevo baño antes de empezar la obra."}];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": service.title,
+  "provider": { "@type": "LocalBusiness", "name": SITE.name },
+  "areaServed": "Madrid",
+  "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "6995" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.question,
+    "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+  }))
+};
+---
+
+<Layout
+  title="Reforma Integral de Baño en Madrid | Reformas Baño Madrid Pro"
+  description="Reforma integral de baño en Madrid desde 6.995€. Diseño 3D, materiales de primera calidad y garantía de 5 años. Especialistas en Argüelles y Moncloa."
+  canonical="/servicios/reforma-integral-bano/"
+  schema={[schema, faqSchema]}
+>
+  <!-- HERO -->
+  <section class="relative h-[420px] flex items-end">
+    <img src={service.heroImage} alt={service.title} class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/55"></div>
+    <div class="relative container-main pb-12 text-white">
+      <div class="bg-[#B30000] inline-block px-3 py-1 text-xs font-bold uppercase tracking-wide mb-3">MADRID · ARGÜELLES · MONCLOA</div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-3">Reforma Integral de Baño en Madrid</h1>
+      <p class="text-lg text-gray-200 mb-6 max-w-xl">Transformamos tu baño de arriba abajo. Diseño 3D, materiales de primera y obra en el plazo acordado.</p>
+      <div class="flex flex-wrap gap-4 items-center">
+        <a href="/presupuesto/" class="btn-primary">Pedir Presupuesto</a>
+        <span class="text-2xl font-bold text-white">Desde 6.995€</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENTAJAS -->
+  <section class="py-16 bg-white">
+    <div class="container-main">
+      <h2 class="text-3xl font-medium text-[#151515] section-title mb-10">Ventajas de nuestro servicio</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="service-card text-center">
+          <div class="text-4xl mb-3">🎨</div>
+          <h3 class="font-semibold text-[#151515] mb-2">Diseño 3D personalizado</h3>
+          <p class="text-sm text-gray-600">Visualiza tu nuevo baño antes de empezar la obra. Sin sorpresas.</p>
+        </div>
+        <div class="service-card text-center">
+          <div class="text-4xl mb-3">🏗️</div>
+          <h3 class="font-semibold text-[#151515] mb-2">Obra integral completa</h3>
+          <p class="text-sm text-gray-600">Demolición, fontanería, electricidad, alicatado y acabados. Todo incluido.</p>
+        </div>
+        <div class="service-card text-center">
+          <div class="text-4xl mb-3">✨</div>
+          <h3 class="font-semibold text-[#151515] mb-2">Materiales de primera</h3>
+          <p class="text-sm text-gray-600">Gres porcelánico rectificado, mamparas 6-8mm, muebles Roca y Porcelanosa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO -->
+  <ContactForm title="Pide tu presupuesto para Reforma Integral" subtitle="Presupuesto cerrado, sin sorpresas. Te contactamos en menos de 24h." zona="reforma-integral-bano" />
+
+  <!-- QUÉ INCLUYE -->
+  <section class="py-16 bg-[#F6F6F6]">
+    <div class="container-main flex flex-col lg:flex-row gap-12 items-start">
+      <div class="lg:w-1/2">
+        <h2 class="text-3xl font-medium text-[#151515] section-title mb-6">Qué incluye nuestro servicio</h2>
+        <ul class="space-y-3 text-sm text-gray-700">
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Proyecto de diseño 3D previo a la obra</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Demolición y retirada de escombros a punto limpio</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Modificación de fontanería y desagüe</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Alicatado con gres porcelánico rectificado</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Instalación de sanitarios, griferías y accesorios</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Mamparas de cristal templado 6-8mm</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Mueble de baño a medida o de catálogo</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Sellado y estanqueidad completa</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Limpieza final de obra</li>
+        </ul>
+      </div>
+      <div class="lg:w-1/2">
+        <img src={service.heroImage} alt="Detalle de Reforma Integral en Madrid" class="w-full h-64 object-cover rounded-[4px]" />
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIADORES -->
+  <section class="py-16 bg-white">
+    <div class="container-main">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div><div class="text-4xl mb-3">🏆</div><h3 class="font-semibold text-[#151515] mb-2">Garantía 5 años</h3><p class="text-sm text-gray-600">Garantía completa por escrito en todos nuestros trabajos.</p></div>
+        <div><div class="text-4xl mb-3">⚡</div><h3 class="font-semibold text-[#151515] mb-2">Rapidez</h3><p class="text-sm text-gray-600">Plazos de entrega cumplidos. Cambio de bañera en 48h.</p></div>
+        <div><div class="text-4xl mb-3">💳</div><h3 class="font-semibold text-[#151515] mb-2">Financiación sin intereses</h3><p class="text-sm text-gray-600">Financia tu reforma sin intereses hasta en 12 meses.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="Preguntas frecuentes sobre Reforma Integral en Madrid" />
+
+  <!-- ZONAS -->
+  <section class="py-12 bg-[#F6F6F6]">
+    <div class="container-main">
+      <h2 class="text-2xl font-medium text-[#151515] section-title mb-8">Dónde realizamos este servicio</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/zonas/madrid/" class="inline-block border border-[#B30000] text-[#B30000] px-4 py-2 text-sm hover:bg-[#B30000] hover:text-white transition-colors">Madrid</a>
+        <a href="/zonas/madrid/moncloa/" class="inline-block border border-[#B30000] text-[#B30000] px-4 py-2 text-sm hover:bg-[#B30000] hover:text-white transition-colors">Moncloa</a>
+        <a href="/zonas/madrid/arguelles/" class="inline-block border border-[#B30000] text-[#B30000] px-4 py-2 text-sm hover:bg-[#B30000] hover:text-white transition-colors">Argüelles</a>
+      </div>
+    </div>
+  </section>
+</Layout>

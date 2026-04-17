@@ -1,0 +1,125 @@
+---
+import Layout from '@layouts/Layout.astro';
+import ContactForm from '@components/ContactForm.astro';
+import FAQ from '@components/FAQ.astro';
+import { SERVICES, SITE } from '@data/site';
+
+const service = SERVICES.find(s => s.slug === 'cambio-banera-por-ducha')!;
+
+const faqs = [{"question": "¿Cuánto cuesta cambiar la bañera por ducha en Madrid?", "answer": "El precio de cambiar la bañera por ducha en Madrid empieza desde 1.199€ con plato extraplano y mampara incluidos. El precio final depende de las dimensiones y los materiales elegidos."}, {"question": "¿En cuánto tiempo se hace el cambio de bañera por ducha?", "answer": "El cambio de bañera por ducha se realiza en menos de 48 horas en la mayoría de los casos. En un solo día retiramos la bañera, instalamos el plato de ducha y la mampara."}, {"question": "¿Qué plato de ducha recomendáis?", "answer": "Recomendamos platos de resina mineral extraplanos de 3cm de grosor con superficie antideslizante clase C3. Son los más seguros, fáciles de limpiar y duraderos."}];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": service.title,
+  "provider": { "@type": "LocalBusiness", "name": SITE.name },
+  "areaServed": "Madrid",
+  "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "1199" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.question,
+    "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+  }))
+};
+---
+
+<Layout
+  title="Cambio de Bañera por Ducha en Madrid | Reformas Baño Madrid Pro"
+  description="Cambio de bañera por ducha en Madrid desde 1.199€. Instalación en 48 horas. Plato extraplano, mamparas a medida. Especialistas en Argüelles y Moncloa."
+  canonical="/servicios/cambio-banera-por-ducha/"
+  schema={[schema, faqSchema]}
+>
+  <!-- HERO -->
+  <section class="relative h-[420px] flex items-end">
+    <img src={service.heroImage} alt={service.title} class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/55"></div>
+    <div class="relative container-main pb-12 text-white">
+      <div class="bg-[#B30000] inline-block px-3 py-1 text-xs font-bold uppercase tracking-wide mb-3">MADRID · ARGÜELLES · MONCLOA</div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-3">Cambio de Bañera por Ducha en Madrid</h1>
+      <p class="text-lg text-gray-200 mb-6 max-w-xl">Baño nuevo en menos de 48 horas. Plato extraplano 3cm, antideslizante clase C3, garantía 5 años.</p>
+      <div class="flex flex-wrap gap-4 items-center">
+        <a href="/presupuesto/" class="btn-primary">Pedir Presupuesto</a>
+        <span class="text-2xl font-bold text-white">Desde 1.199€</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENTAJAS -->
+  <section class="py-16 bg-white">
+    <div class="container-main">
+      <h2 class="text-3xl font-medium text-[#151515] section-title mb-10">Ventajas de nuestro servicio</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="service-card text-center">
+          <div class="text-4xl mb-3">⚡</div>
+          <h3 class="font-semibold text-[#151515] mb-2">Baño nuevo en 48 horas</h3>
+          <p class="text-sm text-gray-600">Instalamos tu nueva ducha en menos de 48 horas sin obras complicadas.</p>
+        </div>
+        <div class="service-card text-center">
+          <div class="text-4xl mb-3">🛡️</div>
+          <h3 class="font-semibold text-[#151515] mb-2">Garantía completa 5 años</h3>
+          <p class="text-sm text-gray-600">Garantía por escrito en materiales y mano de obra durante 5 años.</p>
+        </div>
+        <div class="service-card text-center">
+          <div class="text-4xl mb-3">💳</div>
+          <h3 class="font-semibold text-[#151515] mb-2">Financiación sin intereses</h3>
+          <p class="text-sm text-gray-600">Financia tu cambio de bañera sin intereses hasta en 12 meses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO -->
+  <ContactForm title="Pide tu presupuesto para Cambio a Ducha" subtitle="Presupuesto cerrado, sin sorpresas. Te contactamos en menos de 24h." zona="cambio-banera-por-ducha" />
+
+  <!-- QUÉ INCLUYE -->
+  <section class="py-16 bg-[#F6F6F6]">
+    <div class="container-main flex flex-col lg:flex-row gap-12 items-start">
+      <div class="lg:w-1/2">
+        <h2 class="text-3xl font-medium text-[#151515] section-title mb-6">Qué incluye nuestro servicio</h2>
+        <ul class="space-y-3 text-sm text-gray-700">
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Retirada de la bañera existente</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Plato de ducha extraplano 3cm antideslizante clase C3</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Modificación del desagüe</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Mampara de cristal templado 6mm a medida</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Grifería termostática o monomando</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Sellado y estanqueidad completa</li>
+          <li class="flex items-center gap-2"><span class="text-[#B30000] font-bold">✓</span> Retirada de escombros a punto limpio</li>
+        </ul>
+      </div>
+      <div class="lg:w-1/2">
+        <img src={service.heroImage} alt="Detalle de Cambio a Ducha en Madrid" class="w-full h-64 object-cover rounded-[4px]" />
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIADORES -->
+  <section class="py-16 bg-white">
+    <div class="container-main">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div><div class="text-4xl mb-3">🏆</div><h3 class="font-semibold text-[#151515] mb-2">Garantía 5 años</h3><p class="text-sm text-gray-600">Garantía completa por escrito en todos nuestros trabajos.</p></div>
+        <div><div class="text-4xl mb-3">⚡</div><h3 class="font-semibold text-[#151515] mb-2">Rapidez</h3><p class="text-sm text-gray-600">Plazos de entrega cumplidos. Cambio de bañera en 48h.</p></div>
+        <div><div class="text-4xl mb-3">💳</div><h3 class="font-semibold text-[#151515] mb-2">Financiación sin intereses</h3><p class="text-sm text-gray-600">Financia tu reforma sin intereses hasta en 12 meses.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="Preguntas frecuentes sobre Cambio a Ducha en Madrid" />
+
+  <!-- ZONAS -->
+  <section class="py-12 bg-[#F6F6F6]">
+    <div class="container-main">
+      <h2 class="text-2xl font-medium text-[#151515] section-title mb-8">Dónde realizamos este servicio</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/zonas/madrid/" class="inline-block border border-[#B30000] text-[#B30000] px-4 py-2 text-sm hover:bg-[#B30000] hover:text-white transition-colors">Madrid</a>
+        <a href="/zonas/madrid/moncloa/" class="inline-block border border-[#B30000] text-[#B30000] px-4 py-2 text-sm hover:bg-[#B30000] hover:text-white transition-colors">Moncloa</a>
+        <a href="/zonas/madrid/arguelles/" class="inline-block border border-[#B30000] text-[#B30000] px-4 py-2 text-sm hover:bg-[#B30000] hover:text-white transition-colors">Argüelles</a>
+      </div>
+    </div>
+  </section>
+</Layout>

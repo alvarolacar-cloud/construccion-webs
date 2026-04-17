@@ -1,0 +1,261 @@
+{
+  "$schema": "./project.config.schema.json",
+  "meta": {
+    "templateVersion": "2.0.0",
+    "system": "GMB Crush",
+    "status": "draft",
+    "notes": ""
+  },
+  "project": {
+    "slug": "{{project_slug}}",
+    "name": "{{project_name}}",
+    "locale": "es-ES",
+    "timezone": "Europe/Madrid",
+    "owner": "{{owner_name}}",
+    "createdAt": "{{yyyy-mm-dd}}",
+    "deliveryGoal": "{{lead_generation | calls | quotes | bookings}}"
+  },
+  "business": {
+    "name": "{{business_name}}",
+    "legalName": "{{legal_name}}",
+    "domain": "https://{{root_domain}}",
+    "businessModel": "{{service-area | storefront | hybrid}}",
+    "industry": "{{industry}}",
+    "nap": {
+      "name": "{{business_name}}",
+      "streetAddress": "{{street_address}}",
+      "addressLocality": "{{city}}",
+      "addressRegion": "{{region}}",
+      "postalCode": "{{postal_code}}",
+      "addressCountry": "{{country_code}}",
+      "phoneDisplay": "{{phone_display}}",
+      "phoneE164": "{{phone_e164}}",
+      "email": "{{email_address}}"
+    },
+    "geo": {
+      "latitude": "{{lat}}",
+      "longitude": "{{lng}}"
+    },
+    "openingHours": [
+      "{{Mo-Fr 09:00-18:00}}"
+    ],
+    "socialProfiles": [
+      "{{https://example.com/profile}}"
+    ],
+    "trustAssets": {
+      "reviewsAvailable": false,
+      "projectsAvailable": false,
+      "teamPhotosAvailable": false,
+      "certificationsAvailable": false,
+      "guaranteesAvailable": false
+    }
+  },
+  "gbp": {
+    "profileUrl": "{{gbp_url}}",
+    "placeId": "{{place_id}}",
+    "primaryCategory": "{{primary_gbp_category}}",
+    "additionalCategories": [
+      "{{additional_category_1}}",
+      "{{additional_category_2}}"
+    ],
+    "mainCity": "{{main_city}}"
+  },
+  "services": [
+    {
+      "id": "S-01",
+      "name": "{{service_name}}",
+      "slug": "{{service_slug}}",
+      "type": "{{primary | secondary | complementary}}",
+      "priority": "{{high | medium | low}}",
+      "supportsPrimaryCategory": true,
+      "relatedAdditionalCategories": [
+        "{{additional_category_1}}"
+      ],
+      "requiresServiceOverview": true,
+      "requiresLocationPages": true,
+      "requiresGeoArticles": true,
+      "notes": ""
+    }
+  ],
+  "locations": [
+    {
+      "id": "C-01",
+      "name": "{{city_name}}",
+      "slug": "{{city_slug}}",
+      "tier": "{{primary | secondary | support}}",
+      "hasPhysicalPresence": false,
+      "requiresGeoHub": true,
+      "servicePagePriority": "{{high | medium | low}}",
+      "districtsOrNeighborhoods": [
+        "{{district_1}}"
+      ],
+      "notes": ""
+    }
+  ],
+  "pageFamilies": {
+    "homepage": {
+      "enabled": true,
+      "count": 1
+    },
+    "serviceOverview": {
+      "enabled": true,
+      "count": "{{count}}"
+    },
+    "locationService": {
+      "enabled": true,
+      "count": "{{count}}"
+    },
+    "additionalCategory": {
+      "enabled": true,
+      "count": "{{count}}"
+    },
+    "geoHub": {
+      "enabled": true,
+      "count": "{{count}}"
+    },
+    "geoArticle": {
+      "enabled": true,
+      "count": "{{count}}",
+      "minPerServiceCityPair": 3,
+      "publishingCadence": "1-2 per service per city per month",
+      "refreshWindow": "3-6 months"
+    },
+    "trustPages": {
+      "about": true,
+      "reviews": true,
+      "projects": true,
+      "contact": true,
+      "quote": true,
+      "faqHub": false
+    }
+  },
+  "contentRules": {
+    "framework": "AUDIO",
+    "minimumWords": {
+      "homepage": 1000,
+      "serviceOverview": 1000,
+      "locationService": 1000,
+      "additionalCategory": 800,
+      "geoHub": 600,
+      "geoArticle": 1200
+    },
+    "minimumFaqs": {
+      "homepage": 3,
+      "serviceOverview": 3,
+      "locationService": 3,
+      "additionalCategory": 3,
+      "geoArticle": 3
+    },
+    "geoArticleCityMentions": "6-8 natural mentions",
+    "forbiddenPatterns": [
+      "mix multiple cities on one transactional page",
+      "mix multiple primary services on one transactional page",
+      "pretend physical presence where none exists",
+      "publish thin or duplicate local pages"
+    ]
+  },
+  "seo": {
+    "homepageH1Formula": "{{brand}} + {{primary_service}} + {{main_city}}",
+    "locationPagePattern": "/{{category}}/{{city}}/{{service}}/",
+    "serviceOverviewPattern": "/{{category}}/{{service}}/",
+    "geoHubPattern": "/{{city}}/",
+    "geoArticlePattern": "/{{city}}/{{topic_slug}}/",
+    "canonicalStrategy": "self-referencing unless explicit exception",
+    "sitemapRequired": true,
+    "robotsRequired": true
+  },
+  "schema": {
+    "homepage": [
+      "Organization",
+      "WebSite",
+      "LocalBusiness_if_applicable"
+    ],
+    "serviceOverview": [
+      "Service",
+      "BreadcrumbList",
+      "Speakable"
+    ],
+    "locationService": [
+      "LocalBusiness"
+    ],
+    "additionalCategory": [
+      "Service",
+      "BreadcrumbList"
+    ],
+    "geoHub": [
+      "CollectionPage",
+      "BreadcrumbList"
+    ],
+    "geoArticle": [
+      "Article",
+      "FAQPage",
+      "BreadcrumbList",
+      "Speakable"
+    ]
+  },
+  "linkingRules": {
+    "homepageTo": [
+      "serviceOverview",
+      "mainGeoHub",
+      "additionalCategory",
+      "contactOrQuote"
+    ],
+    "serviceOverviewTo": [
+      "locationServiceChildren",
+      "homepage",
+      "relatedServices",
+      "relatedGeoArticles"
+    ],
+    "locationServiceTo": [
+      "serviceOverviewParent",
+      "cityGeoHub",
+      "sameCityRelatedServices",
+      "relatedGeoArticles"
+    ],
+    "additionalCategoryTo": [
+      "cityGeoHub",
+      "relatedLocationServices",
+      "relatedGeoArticles"
+    ],
+    "geoHubTo": [
+      "homepage",
+      "cityLocationServices",
+      "cityAdditionalCategories",
+      "cityGeoArticles",
+      "contactOrQuote"
+    ],
+    "geoArticleTo": [
+      "matchingLocationService",
+      "matchingGeoHub",
+      "relatedGeoArticle"
+    ]
+  },
+  "conversion": {
+    "primaryCtaType": "{{call | form | whatsapp | quote}}",
+    "secondaryCtaType": "{{call | form | none}}",
+    "phoneVisibleInHeader": true,
+    "stickyMobileCta": false,
+    "forms": [
+      {
+        "name": "{{contact_form}}",
+        "goal": "{{lead}}"
+      }
+    ]
+  },
+  "workflow": {
+    "docsRequired": [
+      "DOC_A",
+      "DOC_B",
+      "DOC_A_REGENERADO",
+      "DOC_C",
+      "DOC_D",
+      "DOC_E"
+    ],
+    "gates": {
+      "beforeDocA": "project.config complete",
+      "beforeDocC": "DOC_A_REGENERADO approved",
+      "beforeDocD": "DOC_C approved",
+      "beforeDocE": "preview or production URL accessible"
+    }
+  }
+}

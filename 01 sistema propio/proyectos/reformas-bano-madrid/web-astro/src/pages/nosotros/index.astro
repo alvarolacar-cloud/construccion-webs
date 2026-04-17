@@ -1,0 +1,30 @@
+---
+import Layout from '@layouts/Layout.astro';
+import ContactForm from '@components/ContactForm.astro';
+---
+<Layout title="Quiénes Somos | Reformas Baño Madrid Pro" description="Conoce al equipo de Reformas Baño Madrid Pro. Más de 15 años reformando baños en Madrid, Argüelles y Moncloa." canonical="/nosotros/">
+  <section class="relative h-[360px] flex items-end">
+    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319194189/GtDWXkEw3HZjzzH6Ch3b8h/hero-reforma-integral-PtkybgjiNmqgdLfcNLHh8K.webp" alt="Equipo Reformas Baño Madrid Pro" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/55"></div>
+    <div class="relative container-main pb-12 text-white">
+      <h1 class="text-4xl font-bold mb-3">Quiénes Somos</h1>
+      <p class="text-lg text-gray-200 max-w-xl">Más de 15 años reformando baños en Madrid con calidad, honestidad y compromiso.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container-main max-w-3xl">
+      <h2 class="text-3xl font-medium text-[#151515] section-title mb-6">Nuestra historia</h2>
+      <p class="text-gray-600 mb-4">Reformas Baño Madrid Pro nació en 2009 con un objetivo claro: ofrecer reformas de baño de calidad en Madrid a un precio justo y con total transparencia. Desde entonces hemos reformado más de 500 baños en la capital, especializándonos en los barrios de Argüelles y Moncloa.</p>
+      <p class="text-gray-600 mb-4">Nuestro equipo está formado por profesionales con más de 15 años de experiencia en el sector de la construcción y la reforma. Trabajamos con los mejores materiales del mercado: Roca, Porcelanosa, Hansgrohe y otras marcas de referencia.</p>
+      <p class="text-gray-600 mb-8">Cada reforma que realizamos incluye un presupuesto cerrado sin sorpresas, diseño 3D previo, gestión de escombros a punto limpio y garantía de 5 años por escrito.</p>
+      <div class="grid grid-cols-3 gap-6 text-center">
+        <div class="bg-[#F6F6F6] p-6 rounded-[4px]"><p class="text-4xl font-bold text-[#B30000]">+500</p><p class="text-xs text-gray-500 mt-1">Baños reformados</p></div>
+        <div class="bg-[#F6F6F6] p-6 rounded-[4px]"><p class="text-4xl font-bold text-[#B30000]">+15</p><p class="text-xs text-gray-500 mt-1">Años de experiencia</p></div>
+        <div class="bg-[#F6F6F6] p-6 rounded-[4px]"><p class="text-4xl font-bold text-[#B30000]">4.9★</p><p class="text-xs text-gray-500 mt-1">Google Reviews</p></div>
+      </div>
+    </div>
+  </section>
+
+  <ContactForm title="¿Hablamos de tu proyecto?" subtitle="Cuéntanos qué necesitas y te preparamos un presupuesto sin compromiso." />
+</Layout>

@@ -1,0 +1,56 @@
+---
+// FAQ.astro — Acordeón de preguntas frecuentes
+// Schema FAQPage se añade en el Layout de cada página que lo use
+interface Props {
+  items: { question: string; answer: string }[];
+  title?: string;
+}
+
+const { items, title = 'Preguntas frecuentes' } = Astro.props;
+---
+
+<section class="py-16 bg-white">
+  <div class="container-main max-w-3xl">
+    <h2 class="text-3xl font-medium text-[#151515] section-title mb-10">{title}</h2>
+
+    <div class="space-y-0" id="faq-container">
+      {items.map((item, i) => (
+        <div class="border-b border-gray-200">
+          <button
+            class="faq-toggle w-full text-left py-5 flex justify-between items-center text-[#151515] font-medium text-base hover:text-[#B30000] transition-colors duration-200"
+            data-index={i}
+            aria-expanded="false"
+          >
+            <span>{item.question}</span>
+            <span class="faq-icon text-[#B30000] text-xl font-light ml-4 flex-shrink-0">+</span>
+          </button>
+          <div class="faq-answer hidden pb-5 text-sm text-gray-600 leading-relaxed">
+            {item.answer}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling as HTMLElement;
+      const icon = btn.querySelector('.faq-icon') as HTMLElement;
+      const isOpen = !answer.classList.contains('hidden');
+
+      // Cerrar todos
+      document.querySelectorAll('.faq-answer').forEach((a) => a.classList.add('hidden'));
+      document.querySelectorAll('.faq-icon').forEach((ic) => (ic as HTMLElement).textContent = '+');
+      document.querySelectorAll('.faq-toggle').forEach((b) => b.setAttribute('aria-expanded', 'false'));
+
+      // Abrir el actual si estaba cerrado
+      if (!isOpen) {
+        answer.classList.remove('hidden');
+        icon.textContent = '−';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
