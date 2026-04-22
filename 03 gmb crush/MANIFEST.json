@@ -1,0 +1,101 @@
+{
+  "pack": "gmb_crush_pack_final_v4_con_fuentes_originales",
+  "created_utc": "2026-04-21T18:06:39Z",
+  "description": "Pack operativo v4 + PDFs/frameworks originales GMB Crush.",
+  "folders": {
+    "sistema_operativo": "Documentos ejecutables consolidados.",
+    "fuentes_originales_gmb_crush": "Fuentes doctrinales originales en PDF."
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1341,
+      "sha256": "464de44a6c07f66949d72441570b47814b6bd124d34b91692e2d1efade8fde9e"
+    },
+    {
+      "path": "fuentes_originales_gmb_crush/01_Analysis_Framework.pdf",
+      "bytes": 144809,
+      "sha256": "b0015bce55357995406fa7ac9af47082de3525135b66fdb1de184e6ac63d8818"
+    },
+    {
+      "path": "fuentes_originales_gmb_crush/02_Universal_AI_Local_SEO_Framework_Template.pdf",
+      "bytes": 164806,
+      "sha256": "4f9eea81cf3e5e5570139ec4f8898995d6d4cdc8f2bacfa7b5c081a02a96b6b7"
+    },
+    {
+      "path": "fuentes_originales_gmb_crush/03_Location_Pages_AI_Optimization_Framework.pdf",
+      "bytes": 119291,
+      "sha256": "9404666b08766f3617fd19fd3892bad744ad94452d2e55933bb5097f6d628d91"
+    },
+    {
+      "path": "fuentes_originales_gmb_crush/04_Website_Homepage_AI_Optimization_Framework.pdf",
+      "bytes": 91878,
+      "sha256": "600b9b89343ac9b1bf12ee79b99d2b97d8e516ad163f11085e57e80cfb0c60e4"
+    },
+    {
+      "path": "fuentes_originales_gmb_crush/05_Service_Pages_AI_Optimization_Framework.pdf",
+      "bytes": 106340,
+      "sha256": "fb46ad1a9f0066c585e9357fc93a7f5e088e24031fc962339f1805ec1f1ca151"
+    },
+    {
+      "path": "fuentes_originales_gmb_crush/06_GeoHub_Pages_AI_Framework.pdf",
+      "bytes": 110398,
+      "sha256": "be7386d49fdf131e38de806a5510f188a0d2197717918b1d9e763dab4bb87111"
+    },
+    {
+      "path": "fuentes_originales_gmb_crush/07_GeoArticle_Pages_AI_Framework.pdf",
+      "bytes": 190615,
+      "sha256": "bfba643d102467f71173c29dad09847d9baf347a73ca6fe797b575913dc908b7"
+    },
+    {
+      "path": "fuentes_originales_gmb_crush/08_Additional_Categories_Pages_AI_Framework.pdf",
+      "bytes": 95388,
+      "sha256": "86f93db70ae37b6119e3c8c134f82c0fdc7c959d85b9900a66a214fedba318c4"
+    },
+    {
+      "path": "sistema_operativo/00_BASE_DEL_SISTEMA_GMB.md",
+      "bytes": 37034,
+      "sha256": "6711149ca67cf2840553a2548aff5bed86cfffcb8621e2c60c17f64753214adb"
+    },
+    {
+      "path": "sistema_operativo/01_ESCENARIO_SIN_WEB_Y_SIN_GBP.md",
+      "bytes": 29750,
+      "sha256": "6d729f311363caf190e0ff0ad9b579186ef727d273986388b8507eb084a1f168"
+    },
+    {
+      "path": "sistema_operativo/02_ESCENARIO_SIN_WEB_Y_CON_GBP.md",
+      "bytes": 27571,
+      "sha256": "ff29945e3ced3c3a142072ca76fb2652ca209062a11b08dfe614a678827d3967"
+    },
+    {
+      "path": "sistema_operativo/03_ESCENARIO_CON_WEB_Y_SIN_GBP.md",
+      "bytes": 26886,
+      "sha256": "503000a816e6e19f52693ec4c088895e700c4f7e3ef60e6989acf920bb512b73"
+    },
+    {
+      "path": "sistema_operativo/04_ESCENARIO_CON_WEB_Y_CON_GBP.md",
+      "bytes": 27182,
+      "sha256": "3f629f5c81e254fa2a5ae471c480f999b8b55a5cfc9aa839b0fc609d0d3008cd"
+    },
+    {
+      "path": "sistema_operativo/05_IMPLEMENTACION_TECNICA.md",
+      "bytes": 44836,
+      "sha256": "f8ce5e0d571be4c1473259bdfefb6c76a89cc84cfff9eccc6d007b200362a52f"
+    },
+    {
+      "path": "sistema_operativo/06_BIBLIOTECA_DE_PROMPTS_GMB_CRUSH.md",
+      "bytes": 32226,
+      "sha256": "44fd93a7aa741584b27d1be78247e4e5e9f1946b0c260a25ff51d15155394775"
+    },
+    {
+      "path": "sistema_operativo/README.md",
+      "bytes": 1152,
+      "sha256": "c0518360cb733d96eeeacb745c5ebd177cb5f5deab4450198e46dc5e55df5569"
+    },
+    {
+      "path": "sistema_operativo/REVISION_DE_COBERTURA_GMB.md",
+      "bytes": 5445,
+      "sha256": "9cbef9f6b1c3b642a1f37ef228f2d8ca5af419be7110f1f25044ccd80995eb3b"
+    }
+  ]
+}
