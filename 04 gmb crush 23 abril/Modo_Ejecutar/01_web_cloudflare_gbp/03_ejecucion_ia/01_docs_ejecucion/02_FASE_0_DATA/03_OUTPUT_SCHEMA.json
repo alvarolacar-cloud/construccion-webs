@@ -1,0 +1,793 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/alvarolacar-cloud/SistemaGMBCrush/blob/master/Modo_Ejecutar/01_web_cloudflare_gbp/03_ejecucion_ia/01_docs_ejecucion/01_FASE_0_DATA/03_OUTPUT_SCHEMA.json",
+  "title": "Fase 0 — Data GMB Crush Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "project",
+    "collected_at",
+    "input_humano",
+    "derivaciones",
+    "identidad_provisional",
+    "mercado",
+    "provisionales",
+    "bloqueos",
+    "fuentes",
+    "handoff"
+  ],
+  "definitions": {
+    "dataTag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "origen",
+        "estado"
+      ],
+      "properties": {
+        "origen": {
+          "enum": [
+            "humano",
+            "inventado",
+            "investigado"
+          ]
+        },
+        "estado": {
+          "enum": [
+            "final",
+            "provisional"
+          ]
+        }
+      }
+    },
+    "fuerza": {
+      "enum": [
+        "strong",
+        "medium",
+        "weak"
+      ]
+    },
+    "valorConTag": {
+      "type": "object",
+      "required": [
+        "value",
+        "dataTag"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "dataTag": {
+          "$ref": "#/definitions/dataTag"
+        }
+      }
+    }
+  },
+  "properties": {
+    "project": {
+      "type": "string"
+    },
+    "collected_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "input_humano": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "obligatorios"
+      ],
+      "properties": {
+        "obligatorios": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "BUSINESS_DESCRIPTION",
+            "BASE_LOCATION",
+            "KNOWN_RESTRICTIONS",
+            "ANALYSIS_CITIES_LEVEL_I",
+            "ANALYSIS_CITIES_LEVEL_II"
+          ],
+          "properties": {
+            "BUSINESS_DESCRIPTION": {
+              "type": "object",
+              "required": [
+                "value",
+                "dataTag"
+              ],
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "dataTag": {
+                  "$ref": "#/definitions/dataTag"
+                }
+              }
+            },
+            "BASE_LOCATION": {
+              "type": "object",
+              "required": [
+                "value",
+                "dataTag"
+              ],
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "dataTag": {
+                  "$ref": "#/definitions/dataTag"
+                }
+              }
+            },
+            "KNOWN_RESTRICTIONS": {
+              "type": "object",
+              "required": [
+                "value",
+                "dataTag"
+              ],
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "dataTag": {
+                  "$ref": "#/definitions/dataTag"
+                }
+              }
+            },
+            "ANALYSIS_CITIES_LEVEL_I": {
+              "type": "object",
+              "required": [
+                "value",
+                "dataTag"
+              ],
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "dataTag": {
+                  "$ref": "#/definitions/dataTag"
+                }
+              }
+            },
+            "ANALYSIS_CITIES_LEVEL_II": {
+              "type": "object",
+              "required": [
+                "value",
+                "dataTag"
+              ],
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "dataTag": {
+                  "$ref": "#/definitions/dataTag"
+                }
+              }
+            }
+          }
+        },
+        "opcionales": {
+          "type": "object",
+          "description": "Solo los campos que el humano haya aportado. Todos con origen: humano, estado: final.",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "value",
+              "dataTag"
+            ],
+            "properties": {
+              "value": {},
+              "dataTag": {
+                "$ref": "#/definitions/dataTag"
+              }
+            }
+          }
+        }
+      }
+    },
+    "derivaciones": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Todas las derivaciones obvias desde el input humano. Origen humano, estado final.",
+      "properties": {
+        "pais": {
+          "$ref": "#/definitions/valorConTag"
+        },
+        "idioma": {
+          "$ref": "#/definitions/valorConTag"
+        },
+        "region": {
+          "$ref": "#/definitions/valorConTag"
+        },
+        "ciudad_principal": {
+          "$ref": "#/definitions/valorConTag"
+        },
+        "sector_principal": {
+          "$ref": "#/definitions/valorConTag"
+        },
+        "tipo_negocio": {
+          "type": "object",
+          "required": [
+            "value",
+            "dataTag"
+          ],
+          "properties": {
+            "value": {
+              "enum": [
+                "physical",
+                "SAB",
+                "hybrid"
+              ]
+            },
+            "dataTag": {
+              "$ref": "#/definitions/dataTag"
+            }
+          }
+        },
+        "servicio_principal_probable": {
+          "$ref": "#/definitions/valorConTag"
+        }
+      }
+    },
+    "identidad_provisional": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Datos del negocio que el humano no aportó y la IA inventa razonable. Todos provisional salvo que el humano los haya aportado en input_humano.opcionales.",
+      "properties": {
+        "nombre_provisional": {
+          "$ref": "#/definitions/valorConTag"
+        },
+        "telefono_provisional": {
+          "$ref": "#/definitions/valorConTag"
+        },
+        "email_provisional": {
+          "$ref": "#/definitions/valorConTag"
+        },
+        "dominio_provisional": {
+          "$ref": "#/definitions/valorConTag"
+        },
+        "horarios_provisionales": {
+          "$ref": "#/definitions/valorConTag"
+        },
+        "direccion_provisional": {
+          "$ref": "#/definitions/valorConTag"
+        }
+      }
+    },
+    "mercado": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "competidores",
+        "categorias_gbp",
+        "servicios",
+        "barrios",
+        "faqs",
+        "keywords",
+        "entidades_nlp",
+        "trust_signals",
+        "patrones_url"
+      ],
+      "properties": {
+        "competidores": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "nombre",
+              "url",
+              "ciudad",
+              "dataTag",
+              "fuerza"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "nombre": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "ciudad": {
+                "type": "string"
+              },
+              "categoria_gbp_principal": {
+                "type": "string"
+              },
+              "categorias_gbp_adicionales": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "servicios_listados": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "estructura_url": {
+                "type": "string"
+              },
+              "trust_signals_visibles": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "dataTag": {
+                "$ref": "#/definitions/dataTag"
+              },
+              "fuerza": {
+                "$ref": "#/definitions/fuerza"
+              }
+            }
+          }
+        },
+        "categorias_gbp": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "categoria",
+              "ocurrencias",
+              "dataTag",
+              "fuerza"
+            ],
+            "properties": {
+              "categoria": {
+                "type": "string"
+              },
+              "ocurrencias": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "ciudades": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "dataTag": {
+                "$ref": "#/definitions/dataTag"
+              },
+              "fuerza": {
+                "$ref": "#/definitions/fuerza"
+              }
+            }
+          }
+        },
+        "servicios": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "servicio",
+              "n_competidores",
+              "dataTag",
+              "fuerza"
+            ],
+            "properties": {
+              "servicio": {
+                "type": "string"
+              },
+              "n_competidores": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "ciudades": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "dataTag": {
+                "$ref": "#/definitions/dataTag"
+              },
+              "fuerza": {
+                "$ref": "#/definitions/fuerza"
+              }
+            }
+          }
+        },
+        "barrios": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "ciudad",
+              "barrio",
+              "menciones",
+              "dataTag",
+              "fuerza"
+            ],
+            "properties": {
+              "ciudad": {
+                "type": "string"
+              },
+              "barrio": {
+                "type": "string"
+              },
+              "menciones": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "fuente": {
+                "type": "string"
+              },
+              "dataTag": {
+                "$ref": "#/definitions/dataTag"
+              },
+              "fuerza": {
+                "$ref": "#/definitions/fuerza"
+              }
+            }
+          }
+        },
+        "faqs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "pregunta",
+              "ocurrencias",
+              "dataTag",
+              "fuerza"
+            ],
+            "properties": {
+              "pregunta": {
+                "type": "string"
+              },
+              "ocurrencias": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "fuente": {
+                "type": "string"
+              },
+              "dataTag": {
+                "$ref": "#/definitions/dataTag"
+              },
+              "fuerza": {
+                "$ref": "#/definitions/fuerza"
+              }
+            }
+          }
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "keyword",
+              "intencion",
+              "dataTag",
+              "fuerza"
+            ],
+            "properties": {
+              "keyword": {
+                "type": "string"
+              },
+              "intencion": {
+                "enum": [
+                  "commercial",
+                  "informational",
+                  "mixed"
+                ]
+              },
+              "fuente": {
+                "type": "string"
+              },
+              "dataTag": {
+                "$ref": "#/definitions/dataTag"
+              },
+              "fuerza": {
+                "$ref": "#/definitions/fuerza"
+              }
+            }
+          }
+        },
+        "entidades_nlp": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "entidad",
+              "dataTag",
+              "fuerza"
+            ],
+            "properties": {
+              "entidad": {
+                "type": "string"
+              },
+              "contexto": {
+                "type": "string"
+              },
+              "ocurrencias": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "dataTag": {
+                "$ref": "#/definitions/dataTag"
+              },
+              "fuerza": {
+                "$ref": "#/definitions/fuerza"
+              }
+            }
+          }
+        },
+        "trust_signals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "trust_signal",
+              "n_competidores",
+              "dataTag",
+              "fuerza"
+            ],
+            "properties": {
+              "trust_signal": {
+                "type": "string"
+              },
+              "n_competidores": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "ejemplo": {
+                "type": "string"
+              },
+              "dataTag": {
+                "$ref": "#/definitions/dataTag"
+              },
+              "fuerza": {
+                "$ref": "#/definitions/fuerza"
+              }
+            }
+          }
+        },
+        "patrones_url": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "patron",
+              "n_competidores",
+              "dataTag",
+              "fuerza"
+            ],
+            "properties": {
+              "patron": {
+                "type": "string"
+              },
+              "ejemplo": {
+                "type": "string"
+              },
+              "n_competidores": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "dataTag": {
+                "$ref": "#/definitions/dataTag"
+              },
+              "fuerza": {
+                "$ref": "#/definitions/fuerza"
+              }
+            }
+          }
+        },
+        "otros": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "dato",
+              "descripcion",
+              "dataTag",
+              "fuerza"
+            ],
+            "properties": {
+              "dato": {
+                "type": "string"
+              },
+              "descripcion": {
+                "type": "string"
+              },
+              "dataTag": {
+                "$ref": "#/definitions/dataTag"
+              },
+              "fuerza": {
+                "$ref": "#/definitions/fuerza"
+              }
+            }
+          }
+        }
+      }
+    },
+    "provisionales": {
+      "type": "array",
+      "description": "Inventario explícito de todos los datos que quedaron con estado: provisional.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "dato",
+          "seccion",
+          "motivo",
+          "tipo_sustitucion"
+        ],
+        "properties": {
+          "dato": {
+            "type": "string"
+          },
+          "seccion": {
+            "type": "string"
+          },
+          "motivo": {
+            "type": "string"
+          },
+          "tipo_sustitucion": {
+            "enum": [
+              "humano_sustituye",
+              "investigacion_adicional"
+            ]
+          }
+        }
+      }
+    },
+    "bloqueos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "bloqueo",
+          "ambito",
+          "impacto"
+        ],
+        "properties": {
+          "bloqueo": {
+            "type": "string"
+          },
+          "ambito": {
+            "type": "string"
+          },
+          "impacto": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "fuentes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "fuente",
+          "tipo"
+        ],
+        "properties": {
+          "fuente": {
+            "type": "string"
+          },
+          "url_o_descripcion": {
+            "type": "string"
+          },
+          "ciudad": {
+            "type": "string"
+          },
+          "tipo": {
+            "enum": [
+              "local_pack",
+              "organico",
+              "serp",
+              "paa",
+              "autocomplete",
+              "otro"
+            ]
+          }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "archivos_producidos",
+        "datos_disponibles_fase_a",
+        "datos_a_decidir_en_fase_a",
+        "provisionales_criticos",
+        "bloqueos_heredados"
+      ],
+      "properties": {
+        "archivos_producidos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "datos_disponibles_fase_a": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "datos_a_decidir_en_fase_a": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "provisionales_criticos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "bloqueos_heredados": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "riesgos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "riesgo",
+              "impacto",
+              "probabilidad"
+            ],
+            "properties": {
+              "riesgo": {
+                "type": "string"
+              },
+              "impacto": {
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ]
+              },
+              "probabilidad": {
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ]
+              }
+            }
+          }
+        },
+        "recomendaciones": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

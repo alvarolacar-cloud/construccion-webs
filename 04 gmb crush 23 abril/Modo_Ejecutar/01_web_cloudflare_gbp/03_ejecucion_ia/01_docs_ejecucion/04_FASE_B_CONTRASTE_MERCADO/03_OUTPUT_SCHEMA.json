@@ -1,0 +1,421 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gmbcrush.local/schemas/fase-b-contraste-mercado.schema.json",
+  "title": "Fase B - Contraste de Mercado GMB Crush",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "metadata",
+    "validatedGbp",
+    "validatedServices",
+    "validatedGeography",
+    "competitorPatterns",
+    "finalPages",
+    "decisionLog",
+    "discardedIdeas",
+    "handoff"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "phase",
+        "outputName",
+        "version"
+      ],
+      "properties": {
+        "phase": {
+          "const": "B_CONTRASTE_MERCADO"
+        },
+        "outputName": {
+          "const": "HIPOTESIS_CONTRASTADA_GMB_CRUSH"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "validatedGbp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primaryCategory",
+        "additionalCategories"
+      ],
+      "properties": {
+        "primaryCategory": {
+          "type": "string"
+        },
+        "primaryCategoryEvidence": {
+          "type": "string"
+        },
+        "additionalCategories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "decision",
+              "supportPageRequired"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "decision": {
+                "enum": [
+                  "keep",
+                  "backlog",
+                  "discard"
+                ]
+              },
+              "supportPageRequired": {
+                "type": "boolean"
+              },
+              "evidence": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "validatedServices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "decision",
+          "priority",
+          "evidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "decision": {
+            "enum": [
+              "mvp",
+              "backlog",
+              "discard"
+            ]
+          },
+          "priority": {
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "requiresServiceOverview": {
+            "type": "boolean"
+          },
+          "requiresLocationPage": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "validatedGeography": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operationalCities",
+        "analysisCities"
+      ],
+      "properties": {
+        "operationalCities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "name",
+              "pageEligible"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "pageEligible": {
+                "type": "boolean"
+              },
+              "evidence": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "analysisCities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "name",
+              "level",
+              "purpose",
+              "pageEligible"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "level": {
+                "enum": [
+                  "I",
+                  "II"
+                ]
+              },
+              "purpose": {
+                "const": "research_only"
+              },
+              "pageEligible": {
+                "const": false
+              },
+              "evidence": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "competitorPatterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pattern",
+          "type",
+          "strength",
+          "evidence",
+          "decision"
+        ],
+        "properties": {
+          "pattern": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "service",
+              "category",
+              "content",
+              "conversion",
+              "geo",
+              "schema",
+              "linking",
+              "design"
+            ]
+          },
+          "strength": {
+            "enum": [
+              "strong",
+              "medium",
+              "weak"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "decision": {
+            "enum": [
+              "adopt",
+              "adapt",
+              "ignore",
+              "discard"
+            ]
+          }
+        }
+      }
+    },
+    "finalPages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type",
+          "url",
+          "priority",
+          "dataTag"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "homepage",
+              "service_overview",
+              "location_service",
+              "additional_category",
+              "geohub",
+              "geoarticle",
+              "service_area",
+              "contact",
+              "legal"
+            ]
+          },
+          "url": {
+            "type": "string"
+          },
+          "serviceId": {
+            "type": "string"
+          },
+          "cityId": {
+            "type": "string"
+          },
+          "priority": {
+            "enum": [
+              "high",
+              "medium",
+              "low",
+              "phase_1",
+              "phase_2",
+              "phase_3",
+              "backlog"
+            ]
+          },
+          "dataTag": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "origen",
+              "estado"
+            ],
+            "properties": {
+              "origen": {
+                "enum": [
+                  "humano",
+                  "inventado",
+                  "investigado",
+                  "doctrina"
+                ]
+              },
+              "estado": {
+                "enum": [
+                  "final",
+                  "provisional"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "decisionLog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field",
+          "before",
+          "after",
+          "changeType",
+          "evidence",
+          "decision"
+        ],
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "before": {
+            "type": "string"
+          },
+          "after": {
+            "type": "string"
+          },
+          "changeType": {
+            "enum": [
+              "no_change",
+              "changed",
+              "added",
+              "discarded",
+              "pending"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "decision": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "discardedIdeas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "item",
+          "reason"
+        ],
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "toPhaseC",
+        "toPhaseD",
+        "risks"
+      ],
+      "properties": {
+        "toPhaseC": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "toPhaseD": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "risks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gmbcrush.local/schemas/fase-c-diseno-layout.schema.json",
+  "title": "Fase C - Diseño y Layout GMB Crush",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "metadata",
+    "reference",
+    "designTokens",
+    "components",
+    "pageLayouts",
+    "fallbacks",
+    "discardedPatterns",
+    "handoff"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "phase",
+        "outputName",
+        "version"
+      ],
+      "properties": {
+        "phase": {
+          "const": "C_DISENO_LAYOUT"
+        },
+        "outputName": {
+          "const": "DISENO_GMB_CRUSH"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "type",
+        "extractionStatus"
+      ],
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "url",
+            "screenshot",
+            "manual_reference"
+          ]
+        },
+        "extractionStatus": {
+          "enum": [
+            "extracted_exact",
+            "extracted_screenshot",
+            "extracted_fetch",
+            "inferred",
+            "fallback"
+          ]
+        }
+      }
+    },
+    "designTokens": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "colors",
+        "typography",
+        "spacing"
+      ],
+      "properties": {
+        "colors": {
+          "type": "object"
+        },
+        "typography": {
+          "type": "object"
+        },
+        "spacing": {
+          "type": "object"
+        },
+        "radius": {
+          "type": "object"
+        },
+        "shadows": {
+          "type": "object"
+        }
+      }
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "purpose",
+          "pageTypes"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pageTypes": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "homepage",
+                "service_overview",
+                "location_service",
+                "additional_category",
+                "geohub",
+                "geoarticle",
+                "service_area",
+                "contact",
+                "legal"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "pageLayouts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pageType",
+          "sections",
+          "primaryCta"
+        ],
+        "properties": {
+          "pageType": {
+            "enum": [
+              "homepage",
+              "service_overview",
+              "location_service",
+              "additional_category",
+              "geohub",
+              "geoarticle",
+              "service_area",
+              "contact",
+              "legal"
+            ]
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "primaryCta": {
+            "type": "string"
+          },
+          "internalLinkZones": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "fallbacks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "element",
+          "fallback",
+          "reason"
+        ],
+        "properties": {
+          "element": {
+            "type": "string"
+          },
+          "fallback": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "requiresApproval": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "discardedPatterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pattern",
+          "reason"
+        ],
+        "properties": {
+          "pattern": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "toPhaseD",
+        "risks"
+      ],
+      "properties": {
+        "toPhaseD": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "risks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

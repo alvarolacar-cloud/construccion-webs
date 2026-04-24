@@ -1,0 +1,352 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gmbcrush.local/schemas/fase-d-construccion-web.schema.json",
+  "title": "Fase D - Construcción Web GMB Crush",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "metadata",
+    "stack",
+    "routesBuilt",
+    "dataFiles",
+    "componentsBuilt",
+    "schemaSeo",
+    "internalLinks",
+    "technicalQa",
+    "deployment",
+    "knownIssues",
+    "handoff"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "phase",
+        "outputName",
+        "version"
+      ],
+      "properties": {
+        "phase": {
+          "const": "D_CONSTRUCCION_WEB"
+        },
+        "outputName": {
+          "const": "BUILD_OUTPUT_GMB_CRUSH"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "stack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "framework",
+        "language",
+        "styling",
+        "rendering"
+      ],
+      "properties": {
+        "framework": {
+          "const": "Astro"
+        },
+        "language": {
+          "const": "TypeScript"
+        },
+        "styling": {
+          "const": "Tailwind CSS"
+        },
+        "rendering": {
+          "const": "SSG"
+        },
+        "hosting": {
+          "type": "string"
+        }
+      }
+    },
+    "routesBuilt": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "url",
+          "pageType",
+          "status"
+        ],
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "pageType": {
+            "enum": [
+              "homepage",
+              "service_overview",
+              "location_service",
+              "additional_category",
+              "geohub",
+              "geoarticle",
+              "service_area",
+              "contact",
+              "legal"
+            ]
+          },
+          "status": {
+            "enum": [
+              "built",
+              "blocked",
+              "skipped"
+            ]
+          },
+          "sourcePageId": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "dataFiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "purpose",
+          "status"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "created",
+              "updated",
+              "missing",
+              "blocked"
+            ]
+          }
+        }
+      }
+    },
+    "componentsBuilt": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "status"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "built",
+              "missing",
+              "blocked"
+            ]
+          },
+          "usedBy": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "homepage",
+                "service_overview",
+                "location_service",
+                "additional_category",
+                "geohub",
+                "geoarticle",
+                "service_area",
+                "contact",
+                "legal"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "schemaSeo": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "url",
+          "schemaTypes",
+          "status"
+        ],
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "schemaTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "enum": [
+              "implemented",
+              "missing",
+              "blocked"
+            ]
+          }
+        }
+      }
+    },
+    "internalLinks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "fromUrl",
+          "toUrl",
+          "anchor",
+          "status"
+        ],
+        "properties": {
+          "fromUrl": {
+            "type": "string"
+          },
+          "toUrl": {
+            "type": "string"
+          },
+          "anchor": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "implemented",
+              "missing",
+              "blocked"
+            ]
+          }
+        }
+      }
+    },
+    "technicalQa": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "routes",
+        "seo",
+        "performance",
+        "content",
+        "productionReady"
+      ],
+      "properties": {
+        "routes": {
+          "enum": [
+            "pass",
+            "fail",
+            "partial"
+          ]
+        },
+        "seo": {
+          "enum": [
+            "pass",
+            "fail",
+            "partial"
+          ]
+        },
+        "performance": {
+          "enum": [
+            "pass",
+            "fail",
+            "partial"
+          ]
+        },
+        "content": {
+          "enum": [
+            "pass",
+            "fail",
+            "partial"
+          ]
+        },
+        "productionReady": {
+          "type": "boolean"
+        }
+      }
+    },
+    "deployment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "previewUrl": {
+          "type": "string"
+        },
+        "productionUrl": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "not_started",
+            "preview",
+            "production",
+            "blocked"
+          ]
+        }
+      }
+    },
+    "knownIssues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "issue",
+          "severity"
+        ],
+        "properties": {
+          "issue": {
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "owner": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "toPhaseE",
+        "blockedItems"
+      ],
+      "properties": {
+        "toPhaseE": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blockedItems": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

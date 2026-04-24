@@ -1,0 +1,707 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/alvarolacar-cloud/SistemaGMBCrush/blob/master/Modo_Ejecutar/01_web_cloudflare_gbp/03_ejecucion_ia/01_docs_ejecucion/03_FASE_A_HIPOTESIS_INICIAL/03_OUTPUT_SCHEMA.json",
+  "title": "Fase A - Hipótesis Inicial GMB Crush",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "metadata",
+    "business",
+    "gbp",
+    "services",
+    "geography",
+    "pages",
+    "internalLinks",
+    "provisionalData",
+    "handoff"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "phase",
+        "outputName",
+        "version"
+      ],
+      "properties": {
+        "phase": {
+          "const": "A_HIPOTESIS_INICIAL"
+        },
+        "outputName": {
+          "const": "HIPOTESIS_INICIAL_GMB_CRUSH"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "business": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description",
+        "baseLocation",
+        "primaryCity",
+        "market",
+        "language"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "baseLocation": {
+          "type": "string"
+        },
+        "primaryCity": {
+          "type": "string"
+        },
+        "market": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "businessType": {
+          "enum": [
+            "physical",
+            "SAB",
+            "hybrid",
+            "unknown"
+          ]
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "dataTag": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "origen",
+            "estado"
+          ],
+          "properties": {
+            "origen": {
+              "enum": [
+                "humano",
+                "inventado",
+                "investigado",
+                "doctrina"
+              ]
+            },
+            "estado": {
+              "enum": [
+                "final",
+                "provisional"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "gbp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primaryCategoryCandidate",
+        "additionalCategoryCandidates"
+      ],
+      "properties": {
+        "primaryCategoryCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "reason",
+            "intent",
+            "risk",
+            "dataTag"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            },
+            "intent": {
+              "type": "string"
+            },
+            "highIntentKeywords": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "risk": {
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            "dataTag": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "origen",
+                "estado"
+              ],
+              "properties": {
+                "origen": {
+                  "enum": [
+                    "humano",
+                    "inventado",
+                    "investigado",
+                    "doctrina"
+                  ]
+                },
+                "estado": {
+                  "enum": [
+                    "final",
+                    "provisional"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "additionalCategoryCandidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "serviceId",
+              "needsSupportPage",
+              "priority",
+              "dataTag"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "serviceId": {
+                "type": "string"
+              },
+              "signalsMet": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4
+              },
+              "needsSupportPage": {
+                "type": "boolean"
+              },
+              "priority": {
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "dataTag": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "origen",
+                  "estado"
+                ],
+                "properties": {
+                  "origen": {
+                    "enum": [
+                      "humano",
+                      "inventado",
+                      "investigado",
+                      "doctrina"
+                    ]
+                  },
+                  "estado": {
+                    "enum": [
+                      "final",
+                      "provisional"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "priority",
+          "dataTag",
+          "mvp"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "priority": {
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "dataTag": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "origen",
+              "estado"
+            ],
+            "properties": {
+              "origen": {
+                "enum": [
+                  "humano",
+                  "inventado",
+                  "investigado",
+                  "doctrina"
+                ]
+              },
+              "estado": {
+                "enum": [
+                  "final",
+                  "provisional"
+                ]
+              }
+            }
+          },
+          "mvp": {
+            "type": "boolean"
+          },
+          "requiresServiceOverview": {
+            "type": "boolean"
+          },
+          "requiresLocationPage": {
+            "type": "boolean"
+          },
+          "relatedCategory": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "geography": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mainCity",
+        "operationalCities",
+        "analysisCities"
+      ],
+      "properties": {
+        "mainCity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "name",
+            "dataTag"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "dataTag": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "origen",
+                "estado"
+              ],
+              "properties": {
+                "origen": {
+                  "enum": [
+                    "humano",
+                    "inventado",
+                    "investigado",
+                    "doctrina"
+                  ]
+                },
+                "estado": {
+                  "enum": [
+                    "final",
+                    "provisional"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "operationalCities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "name",
+              "role",
+              "pageEligible",
+              "dataTag"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "role": {
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "future"
+                ]
+              },
+              "pageEligible": {
+                "type": "boolean"
+              },
+              "dataTag": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "origen",
+                  "estado"
+                ],
+                "properties": {
+                  "origen": {
+                    "enum": [
+                      "humano",
+                      "inventado",
+                      "investigado",
+                      "doctrina"
+                    ]
+                  },
+                  "estado": {
+                    "enum": [
+                      "final",
+                      "provisional"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "analysisCities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "name",
+              "level",
+              "purpose",
+              "pageEligible",
+              "dataTag"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "level": {
+                "enum": [
+                  "I",
+                  "II"
+                ]
+              },
+              "purpose": {
+                "const": "research_only"
+              },
+              "pageEligible": {
+                "const": false
+              },
+              "dataTag": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "origen",
+                  "estado"
+                ],
+                "properties": {
+                  "origen": {
+                    "enum": [
+                      "humano",
+                      "inventado",
+                      "investigado",
+                      "doctrina"
+                    ]
+                  },
+                  "estado": {
+                    "enum": [
+                      "final",
+                      "provisional"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "neighborhoods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "recommendedUse",
+              "dataTag"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "signalsMet": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "recommendedUse": {
+                "enum": [
+                  "context",
+                  "geoarticle",
+                  "own_page",
+                  "backlog",
+                  "discarded"
+                ]
+              },
+              "dataTag": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "origen",
+                  "estado"
+                ],
+                "properties": {
+                  "origen": {
+                    "enum": [
+                      "humano",
+                      "inventado",
+                      "investigado",
+                      "doctrina"
+                    ]
+                  },
+                  "estado": {
+                    "enum": [
+                      "final",
+                      "provisional"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type",
+          "title",
+          "url",
+          "priority",
+          "scope",
+          "dataTag"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "homepage",
+              "service_overview",
+              "location_service",
+              "additional_category",
+              "geohub",
+              "geoarticle",
+              "service_area",
+              "contact",
+              "legal"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "serviceId": {
+            "type": "string"
+          },
+          "cityId": {
+            "type": "string"
+          },
+          "parentPageIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "priority": {
+            "enum": [
+              "high",
+              "medium",
+              "low",
+              "phase_1",
+              "phase_2",
+              "phase_3",
+              "backlog"
+            ]
+          },
+          "scope": {
+            "enum": [
+              "mvp_initial",
+              "post_launch_expansion",
+              "continuous_content",
+              "backlog"
+            ]
+          },
+          "dataTag": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "origen",
+              "estado"
+            ],
+            "properties": {
+              "origen": {
+                "enum": [
+                  "humano",
+                  "inventado",
+                  "investigado",
+                  "doctrina"
+                ]
+              },
+              "estado": {
+                "enum": [
+                  "final",
+                  "provisional"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "internalLinks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "fromPageId",
+          "toPageId",
+          "anchor",
+          "reason"
+        ],
+        "properties": {
+          "fromPageId": {
+            "type": "string"
+          },
+          "toPageId": {
+            "type": "string"
+          },
+          "anchor": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "provisionalData": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field",
+          "currentValue",
+          "reason",
+          "requiredConfirmation"
+        ],
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "currentValue": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "requiredConfirmation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "questionsForPhaseB",
+        "risks",
+        "blockedItems"
+      ],
+      "properties": {
+        "questionsForPhaseB": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "risks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blockedItems": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

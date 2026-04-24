@@ -1,0 +1,307 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gmbcrush.local/schemas/fase-f-medicion-iteracion.schema.json",
+  "title": "Fase F - Medición e Iteración GMB Crush",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "metadata",
+    "measurementSources",
+    "indexation",
+    "searchConsoleFindings",
+    "gbpFindings",
+    "geoGridFindings",
+    "recommendedActions",
+    "timeline",
+    "decisionLog"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "phase",
+        "outputName",
+        "version"
+      ],
+      "properties": {
+        "phase": {
+          "const": "F_MEDICION_ITERACION"
+        },
+        "outputName": {
+          "const": "MEDICION_ITERACION_OUTPUT"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "measurementSources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source",
+          "available"
+        ],
+        "properties": {
+          "source": {
+            "enum": [
+              "search_console",
+              "gbp_insights",
+              "geogrid",
+              "serp_checks",
+              "analytics",
+              "indexation"
+            ]
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "period": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "indexation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "url",
+          "status"
+        ],
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "pageType": {
+            "enum": [
+              "homepage",
+              "service_overview",
+              "location_service",
+              "additional_category",
+              "geohub",
+              "geoarticle",
+              "service_area",
+              "contact",
+              "legal"
+            ]
+          },
+          "status": {
+            "enum": [
+              "indexed",
+              "not_indexed",
+              "unknown"
+            ]
+          },
+          "action": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "searchConsoleFindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "queryOrPage",
+          "finding",
+          "action"
+        ],
+        "properties": {
+          "queryOrPage": {
+            "type": "string"
+          },
+          "impressions": {
+            "type": "number"
+          },
+          "clicks": {
+            "type": "number"
+          },
+          "ctr": {
+            "type": "number"
+          },
+          "position": {
+            "type": "number"
+          },
+          "finding": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "gbpFindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "metric",
+          "finding"
+        ],
+        "properties": {
+          "metric": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "change": {
+            "type": "number"
+          },
+          "finding": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "geoGridFindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "query",
+          "weakArea",
+          "action"
+        ],
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "strongArea": {
+            "type": "string"
+          },
+          "weakArea": {
+            "type": "string"
+          },
+          "dominantCompetitor": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "recommendedActions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "action",
+          "type",
+          "priority",
+          "evidence"
+        ],
+        "properties": {
+          "action": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "content",
+              "architecture",
+              "GBP",
+              "technical",
+              "measurement"
+            ]
+          },
+          "priority": {
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "dueWindow": {
+            "enum": [
+              "30_days",
+              "60_days",
+              "90_days",
+              "later"
+            ]
+          }
+        }
+      }
+    },
+    "timeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "days30",
+        "days60",
+        "days90"
+      ],
+      "properties": {
+        "days30": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "days60": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "days90": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "decisionLog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "decision",
+          "evidence",
+          "status"
+        ],
+        "properties": {
+          "decision": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "approved",
+              "pending",
+              "rejected"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

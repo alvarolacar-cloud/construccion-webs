@@ -1,0 +1,420 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gmbcrush.local/schemas/fase-e-gbp-build.schema.json",
+  "title": "Fase E - GBP Build & Optimization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "metadata",
+    "gbpProfile",
+    "categories",
+    "services",
+    "serviceAreas",
+    "media",
+    "qaSeed",
+    "posts",
+    "websiteLinks",
+    "reviewStrategy",
+    "nonInventableData",
+    "handoff"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "phase",
+        "outputName",
+        "version"
+      ],
+      "properties": {
+        "phase": {
+          "const": "E_GBP_BUILD"
+        },
+        "outputName": {
+          "const": "GBP_BUILD_OUTPUT"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "gbpProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recommendedName",
+        "businessType",
+        "websiteUrl"
+      ],
+      "properties": {
+        "recommendedName": {
+          "type": "string"
+        },
+        "legalName": {
+          "type": "string"
+        },
+        "businessType": {
+          "enum": [
+            "physical",
+            "SAB",
+            "hybrid"
+          ]
+        },
+        "address": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "websiteUrl": {
+          "type": "string"
+        },
+        "hours": {
+          "type": "string"
+        },
+        "openingDate": {
+          "type": "string"
+        }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "name",
+          "supportUrl",
+          "dataTag"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "primary",
+              "additional"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "supportUrl": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "dataTag": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "origen",
+              "estado"
+            ],
+            "properties": {
+              "origen": {
+                "enum": [
+                  "humano",
+                  "inventado",
+                  "investigado",
+                  "doctrina"
+                ]
+              },
+              "estado": {
+                "enum": [
+                  "final",
+                  "provisional"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "description",
+          "supportUrl",
+          "priority"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "supportUrl": {
+            "type": "string"
+          },
+          "priority": {
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          }
+        }
+      }
+    },
+    "serviceAreas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "type",
+          "pageEligible",
+          "dataTag"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "primary",
+              "operational",
+              "future",
+              "analysis_only"
+            ]
+          },
+          "pageEligible": {
+            "type": "boolean"
+          },
+          "dataTag": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "origen",
+              "estado"
+            ],
+            "properties": {
+              "origen": {
+                "enum": [
+                  "humano",
+                  "inventado",
+                  "investigado",
+                  "doctrina"
+                ]
+              },
+              "estado": {
+                "enum": [
+                  "final",
+                  "provisional"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "assetType",
+          "status"
+        ],
+        "properties": {
+          "assetType": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "available",
+              "needed",
+              "not_allowed"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "qaSeed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "question",
+          "answer"
+        ],
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          },
+          "supportUrl": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "posts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "title",
+          "body",
+          "url"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "launch",
+              "service",
+              "FAQ",
+              "offer",
+              "local",
+              "update"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "websiteLinks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "url"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "website",
+              "appointment",
+              "service",
+              "contact"
+            ]
+          },
+          "url": {
+            "type": "string"
+          },
+          "utm": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "reviewStrategy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requestTiming",
+        "rules"
+      ],
+      "properties": {
+        "requestTiming": {
+          "type": "string"
+        },
+        "requestText": {
+          "type": "string"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "nonInventableData": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field",
+          "dataTag",
+          "actionNeeded"
+        ],
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "dataTag": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "origen",
+              "estado"
+            ],
+            "properties": {
+              "origen": {
+                "enum": [
+                  "humano",
+                  "inventado",
+                  "investigado",
+                  "doctrina"
+                ]
+              },
+              "estado": {
+                "enum": [
+                  "final",
+                  "provisional"
+                ]
+              }
+            }
+          },
+          "actionNeeded": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "toPhaseF",
+        "risks"
+      ],
+      "properties": {
+        "toPhaseF": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "risks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
